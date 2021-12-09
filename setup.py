@@ -75,6 +75,7 @@ setup(
     extras_require={
         "mpi": ["mpi4py"],
         "grids": ["wxpython"],
+        "grids-new": ["notebookjs"],
         "memprof": ["psutil"],
         "dev": [
             "mako",
