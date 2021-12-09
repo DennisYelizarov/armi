@@ -656,3 +656,6 @@ def asciiMapFromGeomAndDomain(
             geometry.DomainType.fromAny(domain),
         )
     ]
+
+def HelloWorld():
+    print("hello from a function created within Jupyter.")
