@@ -129,6 +129,8 @@ function define_bottom_panel(bottom_panel) {
 
         // run the updateChart function with this selected option
         // Put the function here
+        let comm = new CommAPI("update_graph", (ret)=>{alert("The returned value is " + ret.results)})
+        comm.call({n: 3})
         // updateChart(selectedOption)
     });
 
