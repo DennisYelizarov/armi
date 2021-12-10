@@ -3,6 +3,15 @@ text.grid-gui-gridcell {
     font-size: 13px;
 }
 
+.gray-background {
+    background-color: #f4f4f4;
+}
+
+#grid-area {
+    background-color: white;
+    padding: 5px;
+}
+
 .navbar {
     margin: 0 0 0 0;
 }
@@ -12,4 +21,32 @@ a.navbar-brand {
     font-size: 20px;
     font-weight: 400;
     text-decoration: none !important;
+}
+
+.btn-btn {
+    background: #ddd;
+    border: 1px outset #ccc;
+    border-radius: .3em;
+    padding: .3em 1em;
+}
+
+.btn-btn:active {
+    border-style: inset;
+}
+
+input.invisible {
+    position: fixed;
+    top: -100em;
+}
+
+#bottom-box-area {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+#bottom-box-area > div, button {
+    display: block;
+    width: 100%;
 }
