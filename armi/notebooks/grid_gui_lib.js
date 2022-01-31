@@ -1,6 +1,5 @@
 function defineNavBar(navBar) {
-    navBar.attr("class", "navbar navbar-expand-sm bg-dark navbar-dark");
-
+    navBar.attr("id", "navbar");
     navBar.append("a")
         .attr("class", "navbar-brand")
         .attr("href", "#")
@@ -51,35 +50,30 @@ function defineDisplayArea(displayArea, data) {
 }
 
 function defineSidePanel(sidePanel) {
+    sidePanel.attr("id", "side-panel");
+
     sidePanel
         .append("h3").text("Assemblies")
         .append("p").text("Equilibrium Fuel Path");
 
     sidePanel.append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "fuel_path")
         .text("Fuel Path");
 
     sidePanel.append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "rm_fuel_path")
         .text("Remove From Fuel Path");
 }
 
 function defineMiddleContainer(middleContainer, data) {
-    var row = middleContainer
-        .attr("class", "container")
-        .append("div")
-            .attr("class", "row");
-    var displayArea = row.append("div")
-        .attr("class", "w-75 p-3");
+    middleContainer.attr("id", "middle-container");
+    var displayArea = middleContainer.append("div");
     defineDisplayArea(displayArea, data);
-
-    var sidePanel = row.append("div")
-        .attr("class", "w-25 p-3")
-        .attr("id", "side-panel");
+    var sidePanel = middleContainer.append("div");
     defineSidePanel(sidePanel);
 }
 
@@ -93,12 +87,12 @@ function defineBottomPanel(bottomPanel) {
 
     bottomBoxArea.append("div").append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .text("Expand to Full Core");
 
     bottomBoxArea.append("div").append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .text("Save Grid Blueprints")
         .on("click", () => {
             const a = document.createElement('a');
@@ -111,13 +105,13 @@ function defineBottomPanel(bottomPanel) {
 
     bottomBoxArea.append("div").append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "apply_button")
         .text("Help");
 
     bottomBoxArea.append("div").append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "apply_button")
         .text("Save Image...");
 
@@ -157,7 +151,7 @@ function defineBottomPanel(bottomPanel) {
 
     bottomBoxArea.append("div").append("label")
         .attr("for", "open_blueprint_btn")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .style("width", "100%")
         .style("text-align", "center")
         .text("Open Grid Blueprints")
@@ -171,7 +165,7 @@ function defineBottomPanel(bottomPanel) {
 
     bottomBoxArea.append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "apply_button")
         .text("Apply");
 
@@ -179,7 +173,7 @@ function defineBottomPanel(bottomPanel) {
 
     bottomBoxArea.append("button")
         .attr("type", "button")
-        .attr("class", "btn-btn")
+        .attr("class", "my-button")
         .attr("id", "apply_button")
         .text("New Grid Blueprints");
 }

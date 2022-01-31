@@ -1,0 +1,17 @@
+metadata:
+  version: 0.2.2
+settings:
+  availabilityFactor: 0.9
+  buGroups:
+    - 100
+  burnSteps: 2
+  comment: ANL-AFCI-177 CR 1.0 metal core but with HALEU instead of TRU
+  cycleLength: 411.11
+  fuelHandlerName: SampleShuffler
+  genXS: Neutron
+  independentVariables:
+    - ('cladThickness', 0.8500000000000001)
+  loadingFile: anl-afci-177-0002-blueprints.yaml
+  nCycles: 10
+  power: 1000000000.0
+  shuffleLogic: anl-afci-177-fuelManagement.py

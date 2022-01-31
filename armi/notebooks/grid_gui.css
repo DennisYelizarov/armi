@@ -3,6 +3,22 @@ text.grid-gui-gridcell {
     font-size: 13px;
 }
 
+#navbar {
+    margin: 0 0 0 0;
+    background-color: #343a40;
+    padding: .5rem 1rem;
+    width: 100%;
+    display: inline-block;
+}
+
+.navbar-brand {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none !important;
+}
+
 .gray-background {
     background-color: #f4f4f4;
 }
@@ -12,31 +28,27 @@ text.grid-gui-gridcell {
     padding: 5px;
 }
 
-.navbar {
-    margin: 0 0 0 0;
-}
-
-a.navbar-brand {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 20px;
-    font-weight: 400;
-    text-decoration: none !important;
-}
-
-.btn-btn {
+.my-button {
     background: #ddd;
     border: 1px outset #ccc;
     border-radius: .3em;
     padding: .3em 1em;
 }
 
-.btn-btn:active {
+.my-button:active {
     border-style: inset;
 }
 
 input.invisible {
     position: fixed;
     top: -100em;
+}
+
+#middle-container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 #bottom-box-area {
@@ -46,7 +58,7 @@ input.invisible {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-#bottom-box-area > div, button {
+#bottom-box-area > div, #bottom-box-area button {
     display: block;
     width: 100%;
 }
