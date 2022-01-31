@@ -632,6 +632,12 @@ class Database3(database.Database):
                 stderr=subprocess.DEVNULL,
             ).returncode
             == 0
+            and subprocess.run(
+                ["git", "describe"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            ).returncode
+            == 0
         )
         if repo_exists:
             try:
@@ -1143,7 +1149,7 @@ class Database3(database.Database):
 
         # Need to keep a collection of Component instances for linked dimension
         # resolution, before they can be add()ed to their parents. Not just filtering
-        # out of `children`, since _resolveLinkedDims() needs a dict
+        # out of `children`, since resolveLinkedDims() needs a dict
         childComponents = collections.OrderedDict()
         children = []
 
@@ -1154,7 +1160,7 @@ class Database3(database.Database):
                 childComponents[child.name] = child
 
         for _childName, child in childComponents.items():
-            child._resolveLinkedDims(childComponents)
+            child.resolveLinkedDims(childComponents)
 
         for child in children:
             comp.add(child)
@@ -2364,7 +2370,6 @@ NONE_MAP.update(
         intType: numpy.iinfo(intType).min + 2
         for intType in (
             int,
-            numpy.int,
             numpy.int8,
             numpy.int16,
             numpy.int32,
@@ -2384,9 +2389,7 @@ NONE_MAP.update(
         )
     }
 )
-NONE_MAP.update(
-    {floatType: floatType("nan") for floatType in (numpy.float, numpy.float64)}
-)
+NONE_MAP.update({floatType: floatType("nan") for floatType in (float, numpy.float64)})
 
 
 def packSpecialData(
