@@ -1,0 +1,557 @@
+# The comments in this file are important, as they are used
+# to bring in sections of this file into the tutorial in the docs.
+# start-block-clad
+blocks:
+  fuel: &block_fuel
+    clad:
+      shape: Circle
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      id: 0.6962
+      od: 0.8250000000000001
+      mult: 271
+    wire:
+      shape: Helix
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      axialPitch: 30.0
+      helixDiameter: 0.8888
+      id: 0.0
+      od: 0.0808
+      mult: 271
+    fuel:
+      shape: Circle
+      material: UZr
+      Tinput: 25.0
+      Thot: 500.0
+      id: 0.0
+      mult: 271
+      od: 0.6029
+    bond:
+      shape: Circle
+      material: Sodium
+      Tinput: 447.0
+      Thot: 447.0
+      id: fuel.od
+      mult: fuel.mult
+      od: clad.id
+    duct:
+      shape: Hexagon
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      ip: 14.922
+      op: 15.710
+      mult: 1.0
+    intercoolant:
+      shape: Hexagon
+      material: Sodium
+      Tinput: 450.0
+      Thot: 450.0
+      ip: duct.op
+      op: 16.142
+      mult: 1.0
+    coolant:
+      shape: DerivedShape
+      material: Sodium
+      Tinput: 450.0
+# end-block-coolant
+      Thot: 450.0
+# end-block-coolant
+  radial shield: &block_shield
+    control:
+      shape: Circle
+      material: B4C
+      Tinput: 597.0
+      Thot: 597.0
+      id: 0.0
+      od: 0.6962
+      mult: 271
+    duct:
+      shape: Hexagon
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      ip: 14.922
+      op: 15.710
+      mult: 1.0
+    intercoolant:
+      shape: Hexagon
+      material: Sodium
+      Tinput: 447.0
+      Thot: 447.0
+      ip: duct.op
+      mult: 1.0
+      op: 16.142
+    coolant:
+      shape: DerivedShape
+      material: Sodium
+      Tinput: 450.0
+# end-block-radialshield
+      Thot: 450.0
+# end-block-radialshield
+  reflector: &block_reflector
+    reflector:
+      shape: Circle
+      material: HT9
+      Tinput: 450.0
+      Thot: 450.0
+      id: 0.0
+      od: 0.6962
+      mult: 271
+    wire:
+      shape: Helix
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      axialPitch: 30.0
+      helixDiameter: 0.777
+      id: 0.0
+      od: 0.0808
+      mult: 271
+    duct:
+      shape: Hexagon
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      ip: 14.922
+      op: 15.710
+      mult: 1.0
+    intercoolant:
+      shape: Hexagon
+      material: Sodium
+      Tinput: 447.0
+      Thot: 447.0
+      ip: duct.op
+      mult: 1.0
+      op: 16.142
+    coolant:
+      shape: DerivedShape
+      material: Sodium
+      Tinput: 450.0
+# end-block-reflector
+      Thot: 450.0
+# end-block-reflector
+  control: &block_control
+    duct:
+      shape: Hexagon
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      ip: 14.922
+      op: 15.710
+      mult: 1.0
+    intercoolant:
+      shape: Hexagon
+      material: Sodium
+      Tinput: 447.0
+      Thot: 447.0
+      ip: duct.op
+      op: 16.142
+      mult: 1.0
+    coolant:
+      shape: DerivedShape
+      material: Sodium
+      Tinput: 450.0
+# end-block-control
+      Thot: 450.0
+# end-block-control
+  plenum: &block_plenum
+    clad:
+      shape: Circle
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      id: 0.6962
+      od: 0.8250000000000001
+      mult: 271
+    wire:
+      shape: Helix
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      axialPitch: 30.0
+      helixDiameter: 0.88888
+      id: 0.0
+      od: 0.0808
+      mult: 271
+    gap:
+      shape: Circle
+      material: Void
+      Tinput: 450.0
+      Thot: 450.0
+      id: 0.0
+      od: clad.id
+      mult: 271
+    duct:
+      shape: Hexagon
+      material: HT9
+      Tinput: 25.0
+      Thot: 450.0
+      ip: 14.922
+      op: 15.710
+      mult: 1.0
+    intercoolant:
+      shape: Hexagon
+      material: Sodium
+      Tinput: 447.0
+      Thot: 447.0
+      ip: duct.op
+      mult: 1.0
+      op: 16.142
+    coolant:
+      shape: DerivedShape
+      material: Sodium
+      Tinput: 450.0
+# end-block-plenum
+      Thot: 450.0
+# end-block-plenum
+assemblies:
+  heights: &heights
+  - 15.0
+  - 20.32
+  - 20.32
+  - 20.32
+  - 20.32
+  - 20.32
+  - 191.14
+  axial mesh points: &mesh
+  - 1
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 8
+# end-assemblies-common
+  inner fuel:
+    specifier: IC
+    blocks: &fuel_blocks
+    - *block_reflector
+    - *block_fuel
+    - *block_fuel
+    - *block_fuel
+    - *block_fuel
+    - *block_fuel
+    - *block_plenum
+    height: *heights
+    axial mesh points: *mesh
+    material modifications:
+      U235_wt_frac:
+      - ''
+      - 0.127
+      - 0.127
+      - 0.127
+      - 0.127
+      - 0.127
+      - ''
+    xs types:
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+    - A
+# end-assemblies-ic
+  middle core fuel:
+    specifier: MC
+    blocks: *fuel_blocks
+    height: *heights
+    axial mesh points: *mesh
+    material modifications:
+      U235_wt_frac:
+      - ''
+      - 0.153
+      - 0.153
+      - 0.153
+      - 0.153
+      - 0.153
+      - ''
+    xs types:
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+    - B
+# end-assemblies-mc
+  outer core fuel:
+    specifier: OC
+    blocks: *fuel_blocks
+    height: *heights
+    axial mesh points: *mesh
+    material modifications:
+      U235_wt_frac:
+      - ''
+      - 0.180
+      - 0.180
+      - 0.180
+      - 0.180
+      - 0.180
+      - ''
+    xs types:
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+    - C
+# end-assemblies-oc
+  radial reflector:
+    specifier: RR
+    blocks: [*block_reflector]
+    height: [307.74]
+    axial mesh points: [1]
+    xs types: [A]
+# end-assemblies-rr
+  radial shield:
+    specifier: SH
+    blocks: [*block_shield]
+    height: [307.74]
+    axial mesh points: [1]
+    xs types: [A]
+# end-assemblies-sh
+  control:
+    specifier: PC
+    blocks: [*block_control]
+    height: [307.74]
+    axial mesh points: [1]
+    xs types: [A]
+  ultimate shutdown:
+    specifier: US
+    blocks: [*block_control]
+    height: [307.74]
+    axial mesh points: [1]
+    xs types: [A]
+systems:
+  core:
+    grid name: core
+    origin:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+grids:
+  core:
+    geom: hex
+    symmetry: third periodic
+    lattice map: |
+      -     SH   SH   SH
+      -  SH   SH   SH   SH
+       SH   RR   RR   RR   SH
+         RR   RR   RR   RR   SH
+       RR   RR   RR   RR   RR   SH
+         RR   OC   OC   RR   RR   SH
+           OC   OC   OC   RR   RR   SH
+         OC   OC   OC   OC   RR   RR
+           OC   MC   OC   OC   RR   SH
+             MC   MC   PC   OC   RR   SH
+           MC   MC   MC   OC   OC   RR
+             MC   MC   MC   OC   RR   SH
+               PC   MC   MC   OC   RR   SH
+             MC   MC   MC   MC   OC   RR
+               IC   MC   MC   OC   RR   SH
+                 IC   US   MC   OC   RR
+               IC   IC   MC   OC   RR   SH
+                 IC   MC   MC   OC   RR
+               IC   IC   MC   PC   RR   SH
+
+# end-systems-section
+
+nuclide flags:
+  U234:
+    burn: true
+    xs: true
+    expandTo:
+  U235:
+    burn: true
+    xs: true
+    expandTo:
+  U236:
+    burn: true
+    xs: true
+    expandTo:
+  U238:
+    burn: true
+    xs: true
+    expandTo:
+  NP237:
+    burn: true
+    xs: true
+    expandTo:
+  NP238:
+    burn: true
+    xs: true
+    expandTo:
+  PU236:
+    burn: true
+    xs: true
+    expandTo:
+  PU238:
+    burn: true
+    xs: true
+    expandTo:
+  PU239:
+    burn: true
+    xs: true
+    expandTo:
+  PU240:
+    burn: true
+    xs: true
+    expandTo:
+  PU241:
+    burn: true
+    xs: true
+    expandTo:
+  PU242:
+    burn: true
+    xs: true
+    expandTo:
+  AM241:
+    burn: true
+    xs: true
+    expandTo:
+  AM242:
+    burn: true
+    xs: true
+    expandTo:
+  AM243:
+    burn: true
+    xs: true
+    expandTo:
+  CM242:
+    burn: true
+    xs: true
+    expandTo:
+  CM243:
+    burn: true
+    xs: true
+    expandTo:
+  CM244:
+    burn: true
+    xs: true
+    expandTo:
+  CM245:
+    burn: true
+    xs: true
+    expandTo:
+  CM246:
+    burn: true
+    xs: true
+    expandTo:
+  CM247:
+    burn: true
+    xs: true
+    expandTo:
+  LFP35:
+    burn: true
+    xs: true
+    expandTo:
+  LFP38:
+    burn: true
+    xs: true
+    expandTo:
+  LFP39:
+    burn: true
+    xs: true
+    expandTo:
+  LFP40:
+    burn: true
+    xs: true
+    expandTo:
+  LFP41:
+    burn: true
+    xs: true
+    expandTo:
+  DUMP1:
+    burn: true
+    xs: true
+    expandTo:
+  DUMP2:
+    burn: true
+    xs: true
+    expandTo:
+  B10:
+    burn: false
+    xs: true
+    expandTo:
+  B11:
+    burn: false
+    xs: true
+    expandTo:
+  ZR:
+    burn: false
+    xs: true
+    expandTo:
+  C:
+    burn: false
+    xs: true
+    expandTo:
+  SI:
+    burn: false
+    xs: true
+    expandTo:
+  V:
+    burn: false
+    xs: true
+    expandTo:
+  CR:
+    burn: false
+    xs: true
+    expandTo:
+  MN:
+    burn: false
+    xs: true
+    expandTo:
+  FE:
+    burn: false
+    xs: true
+    expandTo:
+  NI:
+    burn: false
+    xs: true
+    expandTo:
+  MO:
+    burn: false
+    xs: true
+    expandTo:
+  W:
+    burn: false
+    xs: true
+    expandTo:
+    - W182
+    - W183
+    - W184
+    - W186
+  NA:
+    burn: false
+    xs: true
+    expandTo:
+  HE:
+    burn: false
+    xs: true
+    expandTo:
+    - HE4
+custom isotopics: {}
